@@ -3,8 +3,9 @@ library(tidyRSS)
 library(xml2)
 library(glue)
 
+# Look up here: https://castos.com/tools/find-podcast-rss-feed/
+# x <- read_xml("https://feeds.megaphone.fm/super-great-kids-stories")
 x <- read_xml("https://feeds.megaphone.fm/storypirates")
-x <- read_xml("https://feeds.megaphone.fm/super-great-kids-stories")
 
 podcasts <-
   x %>%
@@ -35,4 +36,6 @@ podcast_download <- function(podcast, date, season, episode, mp3_url, ...) {
   downloader::download(mp3_url, file, quiet = TRUE)
 }
 
-podcasts %>% pmap(podcast_download)
+podcasts |>
+  filter(date > "2022-01-01") |>
+  pwalk(podcast_download)

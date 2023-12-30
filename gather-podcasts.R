@@ -4,11 +4,13 @@ library(xml2)
 library(glue)
 
 # Look up here: https://castos.com/tools/find-podcast-rss-feed/
-# x <- read_xml("https://feeds.megaphone.fm/super-great-kids-stories")
-x <- read_xml("https://feeds.megaphone.fm/storypirates")
+rss_feed <-
+  "https://feeds.megaphone.fm/RGS9185485759" # Rebel Girls
+  # "https://feeds.megaphone.fm/storypirates"
+  # "https://feeds.megaphone.fm/super-great-kids-stories"
 
 podcasts <-
-  x %>%
+  read_xml(rss_feed) |>
   xml_find_all("//channel//item") %>%
   map_dfr(function(node) {
     tibble(

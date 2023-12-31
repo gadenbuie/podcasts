@@ -14,15 +14,15 @@ podcasts <-
   read_xml(rss_feed) |>
   xml_find_all("//channel//item") |>
   map_dfr(function(node) {
-    tibble(
-      podcast = xml_find_first(xml_root(node), "//channel/title") |> xml_text(),
-      title = node |> xml_find_first(".//title") |> xml_text(),
+    list(
+      podcast = node |> xml_root() |> xml_find_first("//channel/title") |> xml_text(),
+      title = node |> xml_find_first(".//title") |>xml_textlist(),
       link = node |> xml_find_first(".//link") |> xml_text(),
-      date = node |> xml_find_first(".//pubDate") |> xml_text() |> anytime::anydate(),
+      date = node |> xml_find_first(".//pubDate") |> anytime::anydate(),
       season = node |> xml_find_first(".//itunes:season") |> xml_text() |> as.integer(),
       episode = node |> xml_find_first(".//itunes:episode") |> xml_text() |> as.integer(),
-      description = node |> xml_find_first(".//content:encoded") |> xml_text(),
-      mp3_url = node |> xml_find_first(".//enclosure") |> xml_attr("url")
+      mp3_url = node |> xml_find_first(".//enclosure") |> xml_attr("url"),
+      description = node |> xml_find_first(".//content:encoded") |> xml_text()
     )
   })
 

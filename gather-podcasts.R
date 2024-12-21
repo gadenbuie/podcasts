@@ -30,7 +30,9 @@ podcasts <-
       mp3_url = node |> xml_find_first(".//enclosure") |> xml_attr("url"),
       description = node |> xml_find_first(".//content:encoded") |> xml_text()
     )
-  })
+  }) |>
+  I()
+  # filter(year(date) == 2024, month(date) >= 10)
 
 
 podcast_download <- function(podcast, date, season, episode, mp3_url, ...) {

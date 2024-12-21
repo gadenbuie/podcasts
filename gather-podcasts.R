@@ -31,10 +31,10 @@ podcasts <-
 
 
 podcast_download <- function(podcast, date, season, episode, mp3_url, ...) {
-  podcast <- snakecase::to_snake_case(podcast)
+  podcast <- snakecase::to_snake_case(podcast, sep_out = "-")
   if (is.na(episode)) episode <- 99
   dir <- fs::path("podcasts", podcast, sprintf("s%02d", season))
-  file <- sprintf("%s-%s-s%02de%02d.mp3", podcast, date, season, episode)
+  file <- sprintf("%s_%s_s%02de%02d.mp3", podcast, date, season, episode)
   file <- fs::path(dir, file)
   if (fs::file_exists(file)) return()
   fs::dir_create(dir, recurse = TRUE)

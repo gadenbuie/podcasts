@@ -2,6 +2,8 @@ library(tidyverse)
 library(tidyRSS)
 library(xml2)
 library(glue)
+library(downloader)
+library(snakecase)
 
 # Look up here: https://castos.com/tools/find-podcast-rss-feed/
 rss_feed <-

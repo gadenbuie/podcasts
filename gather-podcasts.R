@@ -7,8 +7,11 @@ library(snakecase)
 
 # Look up here: https://castos.com/tools/find-podcast-rss-feed/
 rss_feed <-
-  # "https://feeds.megaphone.fm/ESP3054801210" # Disney Frozen: Forces of Nature
-  "https://feeds.chrt.fm/noodle-loaf"
+  "https://feeds.megaphone.fm/ESP3054801210" # Disney Frozen: Forces of Nature
+  # "https://rss.art19.com/tis-the-grinch-holiday-talk-show"
+  # "https://feeds.megaphone.fm/TNM5702656702" # Purple Rocket
+  # "https://feeds.simplecast.com/alc_TgDp" # Story Seeds
+  # "https://feeds.chrt.fm/noodle-loaf"
   # "https://feeds.megaphone.fm/RGS9185485759" # Rebel Girls
   # "https://feeds.megaphone.fm/storypirates"
   # "https://feeds.megaphone.fm/super-great-kids-stories"
